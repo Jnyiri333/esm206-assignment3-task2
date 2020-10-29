@@ -169,7 +169,7 @@ In the code chunk below, use `ymd()` to convert a date that you choose in `YYYY-
 
 ```{r}
 # Your code here: 
-mdy("6/2/1981")
+mdy("6-2-1981")
 dym("2/1981/6")
 ymd(19810602)
 ```
@@ -239,6 +239,15 @@ Starting from the `lakers` dataset, create a new dataset called `gasol_hookshots
 
 ```{r}
 # Your code here: 
+gasol_hookshots <- lakers %>% 
+  filter(player=="Pau Gasol" & type == "hook") %>% 
+  mutate(date = ymd(date)) %>% 
+  mutate(month = month(date))
+
+number_of_shots<-gasol_hookshots %>% 
+  count(month, result) %>% 
+  group_by(month) %>% 
+  summarize(total_shots=sum(n))
 
 
 ```

@@ -413,11 +413,10 @@ sw_sep_hair &lt;- starwars %&gt;% # Start with starwars
 <p>In the code chunk below, write code to create a new data frame called <code>sw_split_name</code>, starting from <code>starwars</code>, that splits the <code>name</code> column into two pieces, <code>name_1</code> and <code>name_2</code>, with a separation at the first <em>dash</em> “-”.</p>
 <p>Make sure to <code>View()</code> the resulting data frame (remember: run <code>View()</code> in the Console, or click on the object name in the Environment) to ensure it worked as expected.</p>
 <p>**Note: You should get a warning about one piece dropped. What happens to the name in Row 49, which contains two dashes?</p>
-<pre class="r"><code># Your code here: 
-sw_split_name &lt;- starwars %&gt;% # Start with starwars
-  separate(col = name, # Separate the hair_color column...
-           into = c(&quot;name_1&quot;,&quot;name_2&quot;), # Into two columns &#39;hair_1&#39; &amp; &#39;hair_2&#39;
-           sep = &quot;-&quot; # Separated at the first comma
+<pre class="r"><code>sw_split_name &lt;- starwars %&gt;% 
+  separate(col = name, 
+           into = c(&quot;name_1&quot;,&quot;name_2&quot;), 
+           sep = &quot;-&quot; 
   )</code></pre>
 </div>
 <div id="b.-follow-me" class="section level4">
@@ -443,7 +442,12 @@ sw_sep_names &lt;- starwars %&gt;% # Start from starwars data
 <h4>1B. On your own</h4>
 <p>In the code chunk below, write code to create a new data frame called <code>sw_skin_sep</code> that starts from <code>starwars</code>, separates the <code>skin_color</code> column into two columns <code>skin_1</code> and <code>skin_2</code> at the first <em>comma</em>, merging everything after the first comma into the second column and keeping the original <code>skin_color</code> column.</p>
 <p>Make sure to <code>View()</code> the resulting data frame (remember: run <code>View()</code> in the Console, or click on the object name in the Environment) to ensure it worked as expected.</p>
-<pre class="r"><code># Your code here:</code></pre>
+<pre class="r"><code>sw_skin_sep &lt;- starwars %&gt;%  
+  separate(col = skin_color, 
+           into = c(&quot;skin_1&quot;,&quot;skin_2&quot;), 
+           sep = &quot;,&quot;, 
+           extra = &quot;merge&quot;,  
+           remove = FALSE)</code></pre>
 </div>
 </div>
 <div id="tidyrunite" class="section level3">
@@ -468,7 +472,11 @@ mpg_make_model &lt;- mpg %&gt;% # Start with mpg
 <div id="a.-on-your-own-1" class="section level4">
 <h4>2A. On your own</h4>
 <p>In the code chunk below, starting from the <code>mpg</code> data create a new data frame called <code>mpg_model_class</code> with a new column called <code>model_class</code> that combines the <code>model</code> and <code>class</code> column information, separated by a dash “-”. Also add a line (similarly for <code>separate()</code> example above) that retains the original columns.</p>
-<pre class="r"><code># Your code here: </code></pre>
+<pre class="r"><code># Your code here: 
+mpg_model_class &lt;-mpg %&gt;% 
+  unite(col=model_class,
+        c(model,class),
+        sep = &quot;-&quot;)</code></pre>
 </div>
 </div>
 <div id="parsing-dates-with-lubridate" class="section level3">
@@ -490,7 +498,13 @@ ymd(20201118)</code></pre>
 <div id="a.-on-your-own-2" class="section level4">
 <h4>3A. On your own</h4>
 <p>In the code chunk below, use <code>ymd()</code> to convert a date that you choose in <code>YYYY-MM-DD</code>, <code>YYYY/MM/DD</code> and <code>YYYYMMDD</code> form to a Date class:</p>
-<pre class="r"><code># Your code here: </code></pre>
+<pre class="r"><code># Your code here: 
+mdy(&quot;6-2-1981&quot;)</code></pre>
+<pre><code>## [1] &quot;1981-06-02&quot;</code></pre>
+<pre class="r"><code>dym(&quot;2/1981/6&quot;)</code></pre>
+<pre><code>## [1] &quot;1981-06-02&quot;</code></pre>
+<pre class="r"><code>ymd(19810602)</code></pre>
+<pre><code>## [1] &quot;1981-06-02&quot;</code></pre>
 </div>
 <div id="b.-follow-me-1" class="section level4">
 <h4>3B. Follow me</h4>
