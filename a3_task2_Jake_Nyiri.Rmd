@@ -56,11 +56,11 @@ Make sure to `View()` the resulting data frame (remember: run `View()` in the Co
 **Note: You should get a warning about one piece dropped. What happens to the name in Row 49, which contains two dashes?
 
 ```{r}
-# Your code here: 
-sw_split_name <- starwars %>% # Start with starwars
-  separate(col = name, # Separate the hair_color column...
-           into = c("name_1","name_2"), # Into two columns 'hair_1' & 'hair_2'
-           sep = "-" # Separated at the first comma
+
+sw_split_name <- starwars %>% 
+  separate(col = name, 
+           into = c("name_1","name_2"), 
+           sep = "-" 
   )
 
 ```
@@ -94,8 +94,13 @@ In the code chunk below, write code to create a new data frame called `sw_skin_s
 Make sure to `View()` the resulting data frame (remember: run `View()` in the Console, or click on the object name in the Environment) to ensure it worked as expected.
 
 ```{r}
-# Your code here:
 
+sw_skin_sep <- starwars %>%  
+  separate(col = skin_color, 
+           into = c("skin_1","skin_2"), 
+           sep = ",", 
+           extra = "merge",  
+           remove = FALSE)
 
 ```
 
@@ -131,7 +136,10 @@ In the code chunk below, starting from the `mpg` data create a new data frame ca
 
 ```{r}
 # Your code here: 
-
+mpg_model_class <-mpg %>% 
+  unite(col=model_class,
+        c(model,class),
+        sep = "-")
 
 ```
 
@@ -161,8 +169,9 @@ In the code chunk below, use `ymd()` to convert a date that you choose in `YYYY-
 
 ```{r}
 # Your code here: 
-
-
+mdy("6/2/1981")
+dym("2/1981/6")
+ymd(19810602)
 ```
 
 #### 3B. Follow me
